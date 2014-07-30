@@ -12,9 +12,15 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type":"git",
+            "url":"https://github.com/Vesninandrey/PHPoAuthLib"
+        }
+    ],
     "require": {
         "php": ">=5.3",     
-        "lusitanian/oauth": "~0.3"
+        "lusitanian/oauth": "dev-master"
     },
     "require-dev": {
         "illuminate/support": "~4"
