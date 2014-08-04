@@ -41,6 +41,12 @@ class OAuth
     private $_client_secret;
 
     /**
+     * Client public from config
+     * @var string
+     */
+    private $_client_public;
+
+    /**
      * Scope from config
      * @var array
      */
@@ -74,13 +80,15 @@ class OAuth
             $this->_client_id = Config::get("oauth-4-laravel.consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel.consumers.$service.client_secret");
             $this->_scope = Config::get("oauth-4-laravel.consumers.$service.scope", array() );
+            $this->_client_public = Config::get("oauth-4-laravel.consumers.$service.client_public");
 
         // esle try to find config in packages configs
         } else {
             $this->_storage_name = Config::get('oauth-4-laravel::storage', 'Session');
             $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel::consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
+            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.client_public", array() );
+            $this->_client_public = Config::get("oauth-4-laravel::consumers.$service.client_public");
         }
     }
 
@@ -128,7 +136,8 @@ class OAuth
         $credentials = new Credentials(
             $this->_client_id,
             $this->_client_secret,
-            $url ?: URL::current()
+            $url ?: URL::current(),
+            $this->_client_public
         );
 
         // check if scopes were provided
