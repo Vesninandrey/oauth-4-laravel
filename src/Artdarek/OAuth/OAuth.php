@@ -87,7 +87,7 @@ class OAuth
             $this->_storage_name = Config::get('oauth-4-laravel::storage', 'Session');
             $this->_client_id = Config::get("oauth-4-laravel::consumers.$service.client_id");
             $this->_client_secret = Config::get("oauth-4-laravel::consumers.$service.client_secret");
-            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.client_public", array() );
+            $this->_scope = Config::get("oauth-4-laravel::consumers.$service.scope", array() );
             $this->_client_public = Config::get("oauth-4-laravel::consumers.$service.client_public");
         }
     }
